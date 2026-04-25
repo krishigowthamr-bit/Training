@@ -4,7 +4,7 @@ import axios from 'axios';
 const vehicleSlice = createSlice({
     name: "Vehicles",
     initialState: {
-        vehicles: {}
+        vehicles: []
     },
     reducers: {
         vehicles: (state, action) => {state.vehicles = action.payload}
