@@ -25,9 +25,9 @@ function HourlyBase() {
         </h1>
         <button onClick={() => navigate(-1)}>Back to Home</button>
       </header>
-      {vehicleData.data.vehicles.map(
+      {vehicleData && vehicleData.data && vehicleData.data.vehicles && vehicleData.data.vehicles.map(
         (item) => {
-            <p>{item.name}</p>
+            return <p>{item.name}</p>
         }
       )}
     </div>
