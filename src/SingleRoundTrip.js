@@ -5,17 +5,17 @@ import { vehicles } from './Feautures/Counter/vehicleSlice';
 import axios from 'axios';
 
 function HourlyBase() {
-  const [taxiData, setTaxiData] = useState(useSelector((state) => state.vehicles.vehicles));
+  const taxiData = useSelector((state) => state.vehicles);
     const dispatch = useDispatch();
     useEffect(() => {
       const fetchData = async() => {
             const response = await axios.get("https://nanotaxi-django-1006377417781.asia-south1.run.app/api/list_vehicles/");
             console.log(response.data);
-            dispatch(vehicles(response));
+            dispatch(vehicles(response.data.vehicles));
         }
         fetchData();
     },[]);
-    console.log("Taxi Store", taxiData);
+    console.log("Taxi Vehicle",taxiData.vehicles);
     const navigate = useNavigate();
   return (
     <div>
@@ -25,7 +25,7 @@ function HourlyBase() {
         </h1>
         <button onClick={() => navigate(-1)}>Back to Home</button>
       </header>
-      {taxiData && taxiData.map(
+      {taxiData && taxiData.vehicles && taxiData.vehicles.map(
         (item) => {
             return <p>{item.name}</p>
         }
